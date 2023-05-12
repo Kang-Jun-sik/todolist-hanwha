@@ -21,10 +21,30 @@ const TodoList: React.FC = () => {
 
     return (
         <TodoListContainer>
-            
-
-            
-
+            {
+                todos.length > 0 ? (
+                    todos.map((todo: ITodoTypes) => {
+                        const { id, contents, isCompleted } = todo;
+                        return (
+                            <TodoListItem
+                                key={id}
+                                id={id}
+                                contents={contents}
+                                isCompleted={isCompleted}
+                                todos={todos}
+                                setTodos={setTodos}
+                                onDelete={onDelete}
+                                onComplete={onComplete}
+                            />
+                        );
+                    })
+                ) : (
+                    <div className="no-list">
+                        Todo가 없습니다.
+                        <br /> 자유롭게 추가해보세요!
+                    </div>
+                )
+            }
         </TodoListContainer>
     )
 }
